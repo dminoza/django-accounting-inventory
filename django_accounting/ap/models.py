@@ -35,6 +35,7 @@ class Vendor(BaseActiveModel):
     )
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_vendor"
         ordering = ["name"]
         indexes = [models.Index(fields=["is_active"])]
@@ -69,6 +70,7 @@ class Bill(BaseDocumentModel):
     notes = models.TextField(blank=True)
 
     class Meta(BaseDocumentModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_bill"
         ordering = ["-bill_date"]
         unique_together = [("vendor", "bill_number")]
@@ -127,6 +129,7 @@ class BillLine(BaseModel):
     line_number = models.PositiveIntegerField(default=1)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_bill_line"
         ordering = ["line_number"]
     
@@ -149,6 +152,7 @@ class BillPayment(BaseModel):
     applied_amount = models.DecimalField(max_digits=18, decimal_places=_DP)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_bill_payment"
         unique_together = [("bill", "payment")]
     

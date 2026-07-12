@@ -54,6 +54,7 @@ class JournalEntry(BaseDocumentModel):
     )
 
     class Meta(BaseDocumentModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_journal_entry"
         ordering = ["-entry_date", "-created_at"]
         indexes = [
@@ -109,6 +110,7 @@ class JournalLine(BaseModel):
     line_number = models.PositiveIntegerField(default=1)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_journal_line"
         ordering = ["line_number"]
         indexes = [models.Index(fields=["account"])]

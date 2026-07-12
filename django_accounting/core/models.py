@@ -35,6 +35,7 @@ class Account(BaseActiveModel):
     children: ClassVar[models.Manager[Account]]
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_acount"
         ordering = ["code"]
         indexes = [
@@ -77,6 +78,7 @@ class FiscalYear(BaseModel):
 
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_fiscal_year"
         ordering = ["-year"]
     
@@ -99,6 +101,7 @@ class FiscalPeriod(BaseModel):
     is_closed = models.BooleanField(default=False)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_fiscal_year_period"
         ordering = ["start_date"]
         unique_together = [("fiscal_year", "name")]

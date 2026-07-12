@@ -38,6 +38,7 @@ class Customer(BaseActiveModel):
     )
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_customer"
         ordering = ["name"]
         indexes = [models.Index(fields=["is_active"])]
@@ -71,6 +72,7 @@ class Invoice(BaseDocumentModel):
     notes = models.TextField(blank=True)
 
     class Meta(BaseDocumentModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_invoice"
         ordering = ["-invoice_date"]
         indexes = [
@@ -129,6 +131,7 @@ class InvoiceLine(BaseModel):
     line_number = models.PositiveIntegerField(default=1)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_invoice_line"
         ordering = ["line_number"]
     
@@ -173,6 +176,7 @@ class Payment(BaseModel):
     notes = models.TextField(blank=True)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_payment"
         ordering = ["-payment_date"]
         indexes = [
@@ -209,6 +213,7 @@ class InvoicePayment(BaseModel):
     applied_amount = models.DecimalField(max_digits=18, decimal_places=_DP)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_invoice_payment"
         unique_together = [("invoice", "payment")]
     

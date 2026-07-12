@@ -44,6 +44,7 @@ class ItemCategory(BaseActiveModel):
     )
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_item_category"
         verbose_name_plural = "item categories"
         ordering = ["name"]
@@ -107,6 +108,7 @@ class Item(BaseActiveModel):
     )
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_item"
         ordering = ["sku"]
         indexes = [
@@ -152,6 +154,7 @@ class ItemBatch(BaseModel):
     notes = models.TextField(blank=True)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_item_batch"
         unique_together = [("item", "batch_number")]
         ordering = ["expiration_date", "batch_number"]
@@ -191,6 +194,7 @@ class Warehouse(BaseActiveModel):
     address = models.TextField(blank=True)
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_warehouse"
         ordering = ["code"]
     
@@ -208,6 +212,7 @@ class WarehouseLocation(BaseModel):
     is_active = models.BooleanField(default=True)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_warehouse_location"
         unique_together = [("warehouse", "label")]
         ordering = ["warehouse", "label"]
@@ -230,6 +235,7 @@ class InventoryBalance(BaseModel):
     unit_cost = models.DecimalField(max_digits=18, decimal_places=_CDP, default=Decimal("0"))
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_inventory_balance"
         unique_together = [("item", "batch", "warehouse_location")]
         indexes = [models.Index(fields=["item", "batch"])]
@@ -279,6 +285,7 @@ class InventoryMovement(BaseModel):
     notes = models.TextField(blank=True)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_inventory_movement"
         ordering = ["-movement_date", "-created_at"]
         indexes = [

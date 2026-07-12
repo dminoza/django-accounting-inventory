@@ -29,6 +29,7 @@ class TaxAuthority(BaseActiveModel):
     )
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_tax_authority"
         verbose_name_plural = "tax authorities"
         ordering = ["name"]
@@ -59,6 +60,7 @@ class TaxRate(BaseActiveModel):
     effective_to = models.DateField(null=True, blank=True)
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_tax_rate"
         ordering = ["code"]
         indexes = [
@@ -84,6 +86,7 @@ class TaxGroup(BaseActiveModel):
     description = models.TextField(blank=True)
 
     class Meta(BaseActiveModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_tax_group"
         ordering = ["code"]
     
@@ -102,6 +105,7 @@ class TaxGroupRate(BaseModel):
     apply_order = models.PositiveIntegerField(default=1)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_tax_group_rate"
         unique_together = [("tax_group", "tax_rate")]
         ordering = ["apply_order"]
@@ -132,6 +136,7 @@ class TaxLine(BaseModel):
     is_inclusive = models.BooleanField(default=False)
 
     class Meta(BaseModel.Meta):
+        app_label = "django_accounting"
         db_table = "accounting_tax_line"
         indexes = [
             models.Index(fields=["source_type", "source_id"]),
