@@ -1,6 +1,4 @@
 """
-django_accounting/inventory/models.py
-
 Items, batches, warehouses, balances, movements.
 Feature flags from conf:
   ENABLE_BATCH_TRACKING  — enforce batch FK on movements/lines
@@ -324,3 +322,25 @@ class InventoryMovement(BaseModel):
         sig = sig_map.get(self.movement_type)
         if sig:
             sig.send(sender=self.__class__, movement=self, batch=self.batch)
+
+        if self.movement_type in (
+            self.MovementType.ISSUE,
+            self.MovementType.ADJUSTMENT,
+            self.MovementType.RETURN_OUT
+        ):
+            self._check_low_stock()
+    
+    def _check_low_stock(self)->None:
+        from django.db.models import Sum
+
+        total_qty = self.item.balances.aggregate(
+            total=Sum("qty_on_hand")
+        )["total"] or Decimal("0")
+
+        if total_qty <= self.item.reorder_point:
+            low_stock_alert.send(
+                sender=self.__class__,
+                item=self.item,
+                qty_on_hand=total_qty,
+                reorder_point=self.item.reorder_point
+            )

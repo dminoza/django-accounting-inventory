@@ -28,3 +28,4 @@ batch_created = Signal()
 batch_expired = Signal()
 batch_expiring_soon = Signal()
 
+low_stock_alert = Signal()

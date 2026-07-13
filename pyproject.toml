@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "django-accounting"           # name on PyPI (pip install django-accounting)
-version = "1.0.0"
+name = "django-accounting-dminozadev"           # name on PyPI (pip install django-accounting)
+version = "1.0.1"
 description = "Configurable double-entry accounting package for Django REST Framework"
 readme = "README.md"
 license = { file = "LICENSE" }
