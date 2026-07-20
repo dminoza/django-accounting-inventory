@@ -21,7 +21,7 @@ bill_voided = Signal()
 
 inventory_received = Signal()
 inventory_issued = Signal()
-inventory_transfered = Signal()
+inventory_transferred = Signal()
 inventory_adjusted = Signal()
 
 batch_created = Signal()
