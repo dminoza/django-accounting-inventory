@@ -1,4 +1,4 @@
-from typing import Any, ClassVar, override
+from typing import override
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -32,7 +32,6 @@ class Account(BaseActiveModel):
         related_name="children"
     )
     description = models.TextField(blank=True)
-    children: ClassVar[models.Manager[Account]]
 
     class Meta(BaseActiveModel.Meta):
         app_label = "django_accounting"
