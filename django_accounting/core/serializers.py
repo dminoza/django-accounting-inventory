@@ -1,7 +1,3 @@
-"""
-django_accounting/core/serializers.py
-"""
-
 from rest_framework import serializers
 
 from django_accounting.core.models import Account, FiscalYear, FiscalPeriod

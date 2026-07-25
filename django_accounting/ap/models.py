@@ -1,7 +1,3 @@
-"""
-django_accounting/ap/models.py
-"""
-
 from decimal import Decimal
 from typing import override
 
@@ -170,8 +166,12 @@ class BillPayment(BaseModel):
     @override
     def save(self, *args, **kwargs):
         from ..signals import disbursement_applied
+        is_new = self._state.adding
         super().save(*args, **kwargs)
-        disbursement_applied.send(
-            sender=self.__class__,
-            payment=self.payment, bill=self.bill, applied_amount=self.applied_amount,
-        )
+        if is_new:
+            disbursement_applied.send(
+                sender=self.__class__,
+                payment=self.payment, 
+                bill=self.bill, 
+                applied_amount=self.applied_amount,
+            )

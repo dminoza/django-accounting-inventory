@@ -1,7 +1,3 @@
-"""
-django_accounting/ar/models.py
-"""
-
 from decimal import Decimal
 from typing import override
 
@@ -203,7 +199,7 @@ class Payment(BaseModel):
         if is_new:
             if self.payment_type == self.PaymentType.RECEIPT:
                 payment_received.send(sender=self.__class__, payment=self)
-            else:
+            elif self.payment_type == self.PaymentType.DISBURSEMENT:
                 disbursement_made.send(sender=self.__class__, payment=self)
 
 
@@ -229,8 +225,12 @@ class InvoicePayment(BaseModel):
     @override
     def save(self, *args, **kwargs):
         from ..signals import payment_applied
+        is_new = self._state.adding
         super().save(*args, **kwargs)
-        payment_applied.send(
-            sender=self.__class__,
-            payment=self.payment, invoice=self.invoice, applied_amount=self.applied_amount,
-        )
+        if is_new:
+            payment_applied.send(
+                sender=self.__class__,
+                payment=self.payment,
+                invoice=self.invoice,
+                applied_amount=self.applied_amount,
+            )

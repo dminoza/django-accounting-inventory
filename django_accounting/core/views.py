@@ -1,5 +1,3 @@
-# django_accounting/core/views.py
-
 from rest_framework import generics, filters
 from rest_framework.request import Request
 from rest_framework.response import Response
