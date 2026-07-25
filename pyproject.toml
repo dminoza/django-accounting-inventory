@@ -51,6 +51,10 @@ stubs = [
     "django-stubs>=4.2",
     "djangorestframework-stubs>=3.14",
 ]
+doc = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme",
+]
 
 [project.urls]
 Homepage = "https://github.com/dminoza/django-accounting-inventory"
