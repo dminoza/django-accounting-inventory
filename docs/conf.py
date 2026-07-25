@@ -25,8 +25,8 @@ if not settings.configured:
 
 # 3. Project Information
 project = 'django_accounting'
-copyright = '2026, Your Name'
-author = 'Your Name'
+copyright = '2026, Dario C. Minoza Jr.'
+author = 'Dario C. Minoza Jr.'
 
 # 4. Extensions
 extensions = [
