@@ -1,7 +1,3 @@
-"""
-django_accounting/tax/serializers.py
-"""
-
 from rest_framework import serializers
 
 from django_accounting.tax.models import TaxAuthority, TaxRate, TaxGroup, TaxGroupRate, TaxLine

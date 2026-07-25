@@ -1,5 +1,3 @@
-# django_accounting/inventory/views.py
-
 import datetime
 from typing import ClassVar
 from rest_framework import generics, filters

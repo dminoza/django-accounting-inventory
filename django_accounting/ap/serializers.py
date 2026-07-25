@@ -1,7 +1,3 @@
-"""
-django_accounting/ap/serializers.py
-"""
-
 from decimal import Decimal
 
 from django.db.models import Sum

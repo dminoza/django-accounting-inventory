@@ -19,6 +19,9 @@ bill_posted = Signal()
 bill_paid = Signal()
 bill_voided = Signal()
 
+disbursement_made = Signal()
+disbursement_applied = Signal()
+
 inventory_received = Signal()
 inventory_issued = Signal()
 inventory_transferred = Signal()

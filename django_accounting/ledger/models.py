@@ -1,6 +1,4 @@
 """
-django_accounting/ledger/models.py
-
 General ledger: JournalEntry and JournalLine.
 Decimal precision is read from accounting_settings at model definition time.
 """
