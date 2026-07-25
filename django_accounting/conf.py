@@ -1,6 +1,4 @@
 """
-django_accounting/conf.py
-
 Single source of truth for all package settings.
 Override any key in your Django settings.py:
 
@@ -42,6 +40,7 @@ DEFAULTS = {
 
     "CUSTOMER_MODEL": None,
     "VENDOR_MODEL": None,
+    "WAREHOUSE_MODEL" : None,
 
     # Extra read-only fields injected per model name:
     # "SERIALIZER_EXTRA_FIELDS": {"Invoice": ["erp_ref", "dept_code"]}
@@ -118,3 +117,12 @@ def get_vendor_model():
         return apps.get_model(model_str, require_ready=False)
     from django_accounting.ap.models import Vendor
     return Vendor
+
+
+def get_warehouse_model():
+    model_str = accounting_settings.WAREHOUSE
+    if model_str:
+        from django.apps import apps
+        return apps.get_model(model_str, require_ready=False)
+    from django_accounting.inventory.models import Warehouse
+    return Warehouse
