@@ -62,7 +62,7 @@ class Account(BaseActiveModel):
                     {"normal_balance" : f"Type '{self.type}' requires '{expected}'."}
                 )
     @override
-    def save(self, *args: Any, **kwargs: Any) -> None:
+    def save(self, *args, **kwargs) -> None:
         is_new = self._state.adding
         super().save(*args, **kwargs)
         if is_new:
